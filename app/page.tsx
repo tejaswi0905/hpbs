@@ -527,7 +527,7 @@ export default function HappyBirthday() {
             ❤️ Have a wonderful birthday, Surekha! ❤️
           </p>
           <p className="mt-2 text-sm" style={{ color: "#a07ab0" }}>
-            🎂 November 5 🎂
+            🎂 November 2nd 🎂
           </p>
         </div>
       </div>
