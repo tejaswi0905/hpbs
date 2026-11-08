@@ -524,7 +524,7 @@ export default function HappyBirthday() {
           className={`text-center transition-all duration-700 delay-700 ${showContent ? "opacity-100" : "opacity-0"}`}
         >
           <p className="text-2xl animate-heart" style={{ color: "#ff6b9d" }}>
-            ❤️ Have a wonderful birthday, Surekha! ❤️
+            ❤️ Have a wonderful birthday, PDV! ❤️
           </p>
           <p className="mt-2 text-sm" style={{ color: "#a07ab0" }}>
             🎂 November 2nd 🎂
