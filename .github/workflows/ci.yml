@@ -31,7 +31,8 @@ jobs:
       - name: Build application
         run: pnpm build
       
-      - name: Connect to EC2 and execute hostname
+      
+      - name: Deploy to EC2
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
@@ -50,5 +51,25 @@ jobs:
             -i ~/.ssh/deploy_key \
             -o StrictHostKeyChecking=yes \
             "$EC2_USERNAME@$EC2_HOST" \
-            "hostname"
+            'bash -l -s' <<'REMOTE_SCRIPT'
 
+          set -e
+
+          cd /home/ubuntu/hpbs
+
+          echo "Pulling latest code..."
+          git pull --ff-only origin main
+
+          echo "Installing dependencies..."
+          pnpm install --frozen-lockfile
+
+          echo "Building Next.js application..."
+          pnpm build
+
+          echo "Restarting application..."
+          pm2 restart hpbs
+
+          echo "Checking PM2 status..."
+          pm2 status hpbs
+
+          REMOTE_SCRIPT
